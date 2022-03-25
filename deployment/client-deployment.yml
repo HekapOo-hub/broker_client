@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-client-service
+  labels:
+    app: dev-client-service
+spec:
+  selector:
+    matchLabels:
+      app: dev-client-service
+  template:
+    metadata:
+      labels:
+        app: dev-client-service
+    spec:
+      containers:
+        - name: dev-client-service
+          image: vprokopenya/client:latest
+          env:
+            - name: POSITION_PORT
+              value: dev-position-service:50005
+            - name: ORDER_PORT
+              value:  dev-order-service:50004
